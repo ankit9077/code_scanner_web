@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   cameFromOtherPages = false;
   successMessage = '';
+  isLoading = false;
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,

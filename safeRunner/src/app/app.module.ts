@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
+import { CompanyDetailsComponent } from './pages/modules/company-details/company-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    CompanyDetailsComponent
   ],
   imports: [
     BrowserModule,

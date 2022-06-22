@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CompaniesComponent } from './components/companies/companies.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    CompaniesComponent
   ],
   imports: [
     CommonModule,
