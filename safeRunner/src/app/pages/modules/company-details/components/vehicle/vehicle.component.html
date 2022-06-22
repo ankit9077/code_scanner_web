@@ -1,6 +1,9 @@
 <div class="container">
   <div class="header">
-    <button>Add New Vehicle <i class="fa-solid fa-plus"></i></button>
+    <div class="back-icon">
+      <i [routerLink]="['/home/company']" class="fa-solid fa-circle-arrow-left fa-2x"></i>
+    </div>
+    <button (click)="AddNewVehicle()">Add New Vehicle <i class="fa-solid fa-plus"></i></button>
   </div>
 
   <table>
@@ -9,6 +12,7 @@
       <th>Name</th>
       <th>Plate Number</th>
       <th>QR Codes</th>
+      <th>Created On</th>
       <th>Action</th>
     </tr>
     <tr *ngFor="let item of Vehicles;let i=index">
@@ -16,6 +20,7 @@
       <td>{{item.name}}</td>
       <td>{{item.plateNumber}}</td>
       <td>{{item.qrCodes.length}}</td>
+      <td>{{GetMomentDate(item.createdDate)}}</td>
       <td>
         <span><i class="fa-solid fa-pen-to-square"></i></span>
         <span><i class="fa-solid fa-trash"></i></span>

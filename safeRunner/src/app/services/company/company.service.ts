@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class CompanyService {
   private baseUrl = '/company';
   companies: Array<Company> = [];
+  company!: Company;
 
   constructor(private httpService: HttpService) { }
 
@@ -15,6 +16,17 @@ export class CompanyService {
     return new Promise((resolve, reject)=>{
       this.httpService.Get(this.baseUrl+'/list').subscribe((response: any)=>{
         this.companies = response.result;
+        resolve(response.result);
+      },(err)=>{
+        reject(err.message);
+      });
+    });
+  }
+
+  public GetCompanyById(id: String): Promise<any> {
+    return new Promise((resolve, reject)=>{
+      this.httpService.Get(this.baseUrl+`/${id}`).subscribe((response: any)=>{
+        this.company = response.result;
         resolve(response.result);
       },(err)=>{
         reject(err.message);

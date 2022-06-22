@@ -3,7 +3,7 @@ export class User {
   name!: string;
   email!: string;
   password!: string;
-  createdDate!: string;
+  createdDate!: Date;
   constructor() {}
 }
 
@@ -11,7 +11,7 @@ export class Company {
   guid!: string;
   name!: string;
   email!: string;
-  createdDate!: string;
+  createdDate!: Date;
   employeesCount!: Number;
   trucksCount!: Number;
 }
@@ -22,7 +22,7 @@ export class Vehicle {
   plateNumber!: String;
   name!: String;
   companyGuid!: String;
-  createdDate!: String;
+  createdDate!: Date;
   qrCodes!: Array<QrCodes>
 }
 

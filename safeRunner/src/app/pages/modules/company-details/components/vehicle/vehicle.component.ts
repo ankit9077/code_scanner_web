@@ -1,8 +1,10 @@
+import { VehicleEditorComponent } from './../vehicle-editor/vehicle-editor.component';
 import { Vehicle } from './../../../../../../assets/models';
 import { ActivatedRoute, Params } from '@angular/router';
 import { VehicleService } from './../../../../../services/vehicle/vehicle.service';
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialog } from '@angular/material';
+import * as moment from 'moment';
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
@@ -14,7 +16,7 @@ export class VehicleComponent implements OnInit {
     return this.vehicleService.vehicles;
   }
 
-  constructor(private vehicleService: VehicleService) { }
+  constructor(private vehicleService: VehicleService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -23,6 +25,18 @@ export class VehicleComponent implements OnInit {
     },(err)=>{
       this.isLoading = false;
     });
+  }
+
+  GetMomentDate(date: Date): string {
+    return moment(new Date(date)).format('lll');
+  }
+
+  AddNewVehicle() {
+    const vehicleEditorInstance = this.matDialog.open(VehicleEditorComponent, {
+      height: '100vh',
+      width: '100vw',
+    });
+    vehicleEditorInstance.componentInstance.isEditMode = false;
   }
 
 }

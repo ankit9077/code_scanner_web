@@ -10,6 +10,7 @@
       <th>Email</th>
       <th>Employees Count</th>
       <th>Vehicle Count</th>
+      <th>Created On</th>
       <th>Action</th>
     </tr>
     <tr *ngFor="let item of Companies;let i=index" (click)="OpenCompanyDetails(item.guid)">
@@ -18,6 +19,7 @@
       <td>{{item.email}}</td>
       <td>{{item.employeesCount}}</td>
       <td>{{item.trucksCount}}</td>
+      <td>{{GetMomentDate(item.createdDate)}}</td>
       <td>
         <span><i class="fa-solid fa-pen-to-square"></i></span>
         <span><i class="fa-solid fa-trash"></i></span>
