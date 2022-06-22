@@ -1,0 +1,35 @@
+<main class="container">
+  <div class="login-box">
+      <h1 class="head-text">Safe Runner</h1>
+      <div *ngIf="successMessage.length" class="signup">
+        <span>{{successMessage}}</span>
+      </div>
+
+      <div class="error" *ngIf="errorMessage">
+          <span>{{errorMessage}}</span>
+      </div>
+
+      <form class="form" #submitForm="ngForm" (ngSubmit)="Login()" novalidate>
+          <div [formGroup]="loginForm" class="input-field">
+              <input class="input" [class.error-input]="submitForm.submitted && !loginForm.get('email').valid"
+               formControlName="email" type="email" placeholder="Enter Email...">
+          </div>
+          <div [formGroup]="loginForm" class="input-field">
+              <input class="input" [class.error-input]="submitForm.submitted && !loginForm.get('password').valid"
+               formControlName="password" type="password" placeholder="Enter Password...">
+          </div>
+          <div class="footer">
+              <button class="login-button">Login</button>
+              <!-- <span class="footer-text">
+                  <span class="account-text">Do not have an Account? </span>
+                  <u><b class="link" [routerLink]="['/signup']">SignUp</b></u>
+              </span> -->
+
+              <span class="footer-text" style="text-align: center;" >
+              <u><b class="link" [routerLink]="['/forgot-password']">Forgot Password</b></u>
+              </span>
+
+          </div>
+      </form>
+  </div>
+</main>
