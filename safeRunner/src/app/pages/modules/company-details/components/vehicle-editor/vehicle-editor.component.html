@@ -10,25 +10,29 @@
   <!-- <app-loader *ngIf="isLoading" style="height: 100vh;width:100vw;"></app-loader> -->
   <div class="content">
 
-    <!-- <div class="input-field">
-      <span>Name</span>
-      <input class="input" [(ngModel)]="booking.name" type="text" placeholder="Enter Booking Name...">
+    <div class="input-field">
+      <span>Vehicle Name</span>
+      <input class="input" [(ngModel)]="vehicle.name" type="text" placeholder="Enter vehicle Name...">
     </div>
     <div class="input-field">
-      <span>Email</span>
-      <input [(ngModel)]="booking.email" class="input" type="text"
-        placeholder="Enter Booking Email...">
-
-    </div> -->
+      <span>Plate Number</span>
+      <input [(ngModel)]="vehicle.plateNumber" class="input" type="text"
+        placeholder="Enter Plate Number...">
+    </div>
+    <div class="input-field">
+      <span>Company Name</span>
+      <input disabled value="{{company.name}}" class="input" type="text"
+        placeholder="Enter Company Name...">
+    </div>
   </div>
 
   <div class="footer">
 
-    <!-- <div *ngIf="!CheckFormValidation() && isTryingToSubmit" class="error-message">{{errorMessage}}</div> -->
+    <div *ngIf="errorMessage.length" class="error-message">{{errorMessage}}</div>
 
     <div class="btn-container">
       <div class="btn">
-        <button (click)="CreateUpdateVehicle()" class="save">
+        <button [disabled]="isLoading" (click)="CreateUpdateVehicle()" class="save">
           <span>Save</span>
         </button>
       </div>

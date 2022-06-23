@@ -19,10 +19,10 @@
       <td>{{i+1}}</td>
       <td>{{item.name}}</td>
       <td>{{item.plateNumber}}</td>
-      <td>{{item.qrCodes.length}}</td>
+      <td (click)="openQrCodes(item, i)">{{item.qrCodes.length}}</td>
       <td>{{GetMomentDate(item.createdDate)}}</td>
       <td>
-        <span><i class="fa-solid fa-pen-to-square"></i></span>
+        <span><i (click)="EditVehicle(item,i)" class="fa-solid fa-pen-to-square"></i></span>
         <span><i class="fa-solid fa-trash"></i></span>
       </td>
     </tr>

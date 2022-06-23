@@ -1,3 +1,4 @@
+import { QrCodesComponent } from './../qr-codes/qr-codes.component';
 import { VehicleEditorComponent } from './../vehicle-editor/vehicle-editor.component';
 import { Vehicle } from './../../../../../../assets/models';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -37,6 +38,38 @@ export class VehicleComponent implements OnInit {
       width: '100vw',
     });
     vehicleEditorInstance.componentInstance.isEditMode = false;
+    vehicleEditorInstance.afterClosed().subscribe((vehicle)=>{
+      if(vehicle){
+        this.vehicleService.vehicles.unshift(vehicle);
+      }
+    });
+  }
+
+  EditVehicle(vehicle: Vehicle, index: number) {
+    const vehicleEditorInstance = this.matDialog.open(VehicleEditorComponent, {
+      height: '100vh',
+      width: '100vw',
+    });
+    vehicleEditorInstance.componentInstance.isEditMode = true;
+    vehicleEditorInstance.componentInstance.vehicle = JSON.parse(JSON.stringify(vehicle));
+    vehicleEditorInstance.afterClosed().subscribe((vehicle)=>{
+      if(vehicle) {
+        this.vehicleService.vehicles[index] = vehicle;
+      }
+    });
+  }
+
+  openQrCodes(vehicle: Vehicle, index: number) {
+    const qrCodesInstance = this.matDialog.open(QrCodesComponent, {
+      height: '100vh',
+      width: '100vw',
+    });
+    qrCodesInstance.componentInstance.vehicle = JSON.parse(JSON.stringify(vehicle));
+    qrCodesInstance.afterClosed().subscribe((vehicle)=>{
+      if(vehicle) {
+        this.vehicleService.vehicles[index] = vehicle;
+      }
+    });
   }
 
 }

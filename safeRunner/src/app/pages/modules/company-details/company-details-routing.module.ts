@@ -1,3 +1,4 @@
+import { EmployeeComponent } from './components/employee/employee.component';
 import { CompanyDetailsComponent } from './company-details.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { NgModule } from '@angular/core';
@@ -9,7 +10,7 @@ const routes: Routes = [{
   children: [
     { path: '', pathMatch: 'full', redirectTo: 'vehicle' },
     { path: 'vehicle', component: VehicleComponent, canActivate: [AuthGuard] },
-    { path: 'employee', component: VehicleComponent, canActivate: [AuthGuard] }
+    { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard] }
   ]
 }];
 

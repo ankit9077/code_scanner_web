@@ -1,4 +1,4 @@
-import { Vehicle } from './../../../assets/models';
+import { Vehicle, QrCodes } from './../../../assets/models';
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
 
@@ -20,6 +20,43 @@ export class VehicleService {
       },(err)=>{
         reject(err.message);
       });
+    });
+  }
+
+  public CreateVehicle(vehicle: Vehicle): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.httpService.Post(this.baseUrl + '/create/'+this.companyGuid, vehicle).subscribe((response: any) => {
+        if (response.statusCode === 201) {
+          resolve(response.result);
+        } else {
+          reject(response.message);
+        }
+      }, err => reject(err.message));
+    });
+  }
+
+  public UpdateVehicle(vehicle: Vehicle): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.httpService.Post(this.baseUrl + '/update/'+this.companyGuid, vehicle).subscribe((response: any) => {
+        if (response.statusCode === 200) {
+          resolve(response.result);
+        } else {
+          reject(response.message);
+        }
+      }, err => reject(err.message));
+    });
+  }
+
+
+  public UpdateQrCodes(qrCodes: Array<QrCodes>, vehicleId: String): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.httpService.Post(this.baseUrl + '/saveCodes/'+ vehicleId, {qrCodes: qrCodes}).subscribe((response: any) => {
+        if (response.statusCode === 200) {
+          resolve(response.result);
+        } else {
+          reject(response.message);
+        }
+      }, err => reject(err.message));
     });
   }
 }

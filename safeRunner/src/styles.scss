@@ -37,7 +37,11 @@ body {
   height: 100%;
 
   .cdk-overlay-dark-backdrop {
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(255, 255, 255, 0.902);
+  }
+
+  .cdk-global-overlay-wrapper {
+    justify-content: end !important;
   }
 
   .cdk-overlay-pane {
@@ -48,4 +52,5 @@ body {
     padding: 0px;
     margin: 0px;
   }
+
 }

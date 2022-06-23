@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="header">
+    <div class="heading"></div>
+    <div (click)="CloseDialog()" class="close-icon">
+      <i class="fa-regular fa-rectangle-xmark fa-2x"></i>
+    </div>
+  </div>
+
+  <!-- <app-loader *ngIf="isLoading" style="height: 100vh;width:100vw;"></app-loader> -->
+  <div class="content">
+    <div>{{title}}</div>
+
+    <qrcode #parent
+    [qrdata]="codeData"
+    [elementType]="'img'"
+    [allowEmptyString]="true"
+    [cssClass]="'center'"
+    [colorDark]="'#000000ff'"
+    [colorLight]="'#ffffffff'"
+    [errorCorrectionLevel]="'M'"
+    [margin]="4"
+    [scale]="1"
+    [title]="'A custom title attribute'"
+    [width]="300"></qrcode>
+
+    <button (click)="saveAsImage(parent)">Download QR Code Image</button>
+
+  </div>
+</div>

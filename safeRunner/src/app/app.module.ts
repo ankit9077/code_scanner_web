@@ -23,7 +23,7 @@ import { CompanyDetailsComponent } from './pages/modules/company-details/company
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NoopAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
