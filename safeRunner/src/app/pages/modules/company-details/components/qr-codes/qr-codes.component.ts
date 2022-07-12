@@ -77,6 +77,7 @@ export class QrCodesComponent implements OnInit {
     });
     viewQrCodeInstance.componentInstance.codeData = (JSON.stringify({p:qrCode.codeInfo, v: this.vehicle.guid}));
     viewQrCodeInstance.componentInstance.title = qrCode.title;
+    viewQrCodeInstance.componentInstance.plateNumber = this.vehicle.plateNumber;
   }
 
 }

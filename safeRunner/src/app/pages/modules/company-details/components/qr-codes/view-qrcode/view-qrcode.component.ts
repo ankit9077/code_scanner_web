@@ -11,6 +11,7 @@ import { QRCodeComponent } from 'angularx-qrcode';
 export class ViewQrcodeComponent implements OnInit {
 @Input() codeData = '';
 @Input() title: String = '';
+@Input() plateNumber: String = '';
 @ViewChild('parent') qrCode!: QRCodeComponent;
   constructor(private dialogRef: MatDialogRef<ViewQrcodeComponent>) { }
 
@@ -22,7 +23,6 @@ export class ViewQrcodeComponent implements OnInit {
   }
 
   saveAsImage(parent: any) {
-    debugger;
     const parentElement = parent.qrcElement.nativeElement.querySelector("img").src;
 
     let blobData = this.convertBase64ToBlob(parentElement);
@@ -31,7 +31,7 @@ export class ViewQrcodeComponent implements OnInit {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'Qrcode';
+    link.download = this.title+'_'+this.plateNumber;
     link.click();
 
   }
