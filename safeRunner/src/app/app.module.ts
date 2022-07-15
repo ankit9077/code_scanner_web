@@ -9,12 +9,16 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
 import { CompanyDetailsComponent } from './pages/modules/company-details/company-details.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CompanyDetailsComponent
+    CompanyDetailsComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
