@@ -1,1 +1,30 @@
-<p>employee works!</p>
+<div class="container">
+  <div class="header">
+    <div class="back-icon">
+      <i [routerLink]="['/home/company']" class="fa-solid fa-circle-arrow-left fa-2x"></i>
+    </div>
+    <button>Add New Employee <i class="fa-solid fa-plus"></i></button>
+  </div>
+
+  <table>
+    <tr>
+      <th>Sr.</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Is Verified</th>
+      <th>Created On</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let item of Employees;let i=index">
+      <td>{{i+1}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.isVerified}}</td>
+      <td>{{GetMomentDate(item.createdDate)}}</td>
+      <td>
+        <span><i class="fa-solid fa-pen-to-square"></i></span>
+        <span><i class="fa-solid fa-trash"></i></span>
+      </td>
+    </tr>
+  </table>
+</div>

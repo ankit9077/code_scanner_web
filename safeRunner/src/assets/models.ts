@@ -26,6 +26,15 @@ export class Vehicle {
   qrCodes!: Array<QrCodes>
 }
 
+export class Employee {
+  guid!: String;
+  name!: String;
+  email!: String;
+  companyGuid!: String;
+  createdDate!: Date;
+  isVerified!: String;
+}
+
 export class QrCodes {
   title!: String;
   codeInfo!: String;

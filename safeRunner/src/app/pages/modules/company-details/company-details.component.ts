@@ -1,3 +1,4 @@
+import { EmployeeService } from './../../../services/employee/employee.service';
 import { CompanyService } from './../../../services/company/company.service';
 import { VehicleService } from './../../../services/vehicle/vehicle.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,13 +17,17 @@ export class CompanyDetailsComponent implements OnInit {
   ];
   selectedNav ='vehicle';
 
-  constructor(private route: ActivatedRoute, private vehicleService: VehicleService,
-     private companyService: CompanyService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private vehicleService: VehicleService,
+    private employeeService: EmployeeService,
+    private companyService: CompanyService) { }
 
   ngOnInit(): void {
     this.vehicleService.vehicles = [];
     this.route.params.subscribe((params: Params) => {
       this.vehicleService.companyGuid = params.id;
+      this.employeeService.companyGuid = params.id;
     });
     if(this.vehicleService.companyGuid?.length){
       this.isLoading = true;
