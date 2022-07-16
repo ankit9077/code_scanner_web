@@ -23,7 +23,11 @@ export class Vehicle {
   name!: String;
   companyGuid!: String;
   createdDate!: Date;
-  qrCodes!: Array<QrCodes>
+  qrCodes!: Array<QrCodes>;
+  constructor(){
+    this.name='';
+    this.plateNumber='';
+  }
 }
 
 export class Employee {
@@ -33,6 +37,11 @@ export class Employee {
   companyGuid!: String;
   createdDate!: Date;
   isVerified!: String;
+
+  constructor(){
+    this.name='';
+    this.email='';
+  }
 }
 
 export class QrCodes {

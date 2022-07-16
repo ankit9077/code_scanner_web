@@ -1,3 +1,5 @@
+import { EmployeeEditorComponent } from './employee-editor/employee-editor.component';
+import { MatDialog } from '@angular/material';
 import { EmployeeService } from './../../../../../services/employee/employee.service';
 import { Employee } from './../../../../../../assets/models';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +15,7 @@ export class EmployeeComponent implements OnInit {
     return this.employeeService.employees;
   }
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -26,6 +28,33 @@ export class EmployeeComponent implements OnInit {
 
   GetMomentDate(date: Date): string {
     return moment(new Date(date)).format('lll');
+  }
+
+  AddNewEmployee() {
+    const employeeEditorInstance = this.matDialog.open(EmployeeEditorComponent, {
+      height: '100vh',
+      width: '100vw',
+    });
+    employeeEditorInstance.componentInstance.isEditMode = false;
+    employeeEditorInstance.afterClosed().subscribe((employee)=>{
+      if(employee){
+        this.employeeService.employees.unshift(employee);
+      }
+    });
+  }
+
+  EditEmployee(employee: Employee, index: number) {
+    const employeeEditorInstance = this.matDialog.open(EmployeeEditorComponent, {
+      height: '100vh',
+      width: '100vw',
+    });
+    employeeEditorInstance.componentInstance.isEditMode = true;
+    employeeEditorInstance.componentInstance.employee = JSON.parse(JSON.stringify(employee));
+    employeeEditorInstance.afterClosed().subscribe((employee)=>{
+      if(employee) {
+        this.employeeService.employees[index] = employee;
+      }
+    });
   }
 
 }

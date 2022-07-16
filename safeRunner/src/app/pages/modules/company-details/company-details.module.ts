@@ -9,6 +9,7 @@ import { VehicleEditorComponent } from './components/vehicle-editor/vehicle-edit
 import { QrCodesComponent } from './components/qr-codes/qr-codes.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ViewQrcodeComponent } from './components/qr-codes/view-qrcode/view-qrcode.component';
+import { EmployeeEditorComponent } from './components/employee/employee-editor/employee-editor.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ViewQrcodeComponent } from './components/qr-codes/view-qrcode/view-qrco
     EmployeeComponent,
     VehicleEditorComponent,
     QrCodesComponent,
-    ViewQrcodeComponent
+    ViewQrcodeComponent,
+    EmployeeEditorComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { ViewQrcodeComponent } from './components/qr-codes/view-qrcode/view-qrco
   entryComponents: [
     VehicleEditorComponent,
     QrCodesComponent,
-    ViewQrcodeComponent
+    ViewQrcodeComponent,
+    EmployeeEditorComponent
   ]
 })
 export class CompanyDetailsModule { }

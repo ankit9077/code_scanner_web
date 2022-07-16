@@ -3,7 +3,7 @@
     <div class="back-icon">
       <i [routerLink]="['/home/company']" class="fa-solid fa-circle-arrow-left fa-2x"></i>
     </div>
-    <button>Add New Employee <i class="fa-solid fa-plus"></i></button>
+    <button (click)="AddNewEmployee()">Add New Employee <i class="fa-solid fa-plus"></i></button>
   </div>
 
   <table>
@@ -22,7 +22,7 @@
       <td>{{item.isVerified}}</td>
       <td>{{GetMomentDate(item.createdDate)}}</td>
       <td>
-        <span><i class="fa-solid fa-pen-to-square"></i></span>
+        <span><i (click)="EditEmployee(item,i)" class="fa-solid fa-pen-to-square"></i></span>
         <span><i class="fa-solid fa-trash"></i></span>
       </td>
     </tr>
