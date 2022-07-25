@@ -33,4 +33,40 @@ export class CompanyService {
       });
     });
   }
+
+  public CreateCompany(company: Company): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.httpService.Post(this.baseUrl + '/create', company).subscribe((response: any) => {
+        if (response.statusCode === 201) {
+          resolve(response.result);
+        } else {
+          reject(response.message);
+        }
+      }, err => reject(err.message));
+    });
+  }
+
+  public UpdateCompany(company: Company): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.httpService.Post(this.baseUrl + '/update', company).subscribe((response: any) => {
+        if (response.statusCode === 200) {
+          resolve(response.result);
+        } else {
+          reject(response.message);
+        }
+      }, err => reject(err.message));
+    });
+  }
+
+  public DeleteCompanyById(companyguid: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.httpService.Delete(this.baseUrl + '/delete/' + companyguid).subscribe((response: any) => {
+        if (response.statusCode === 200) {
+          resolve(response.result);
+        } else {
+          reject(response.message);
+        }
+      }, err => reject(err.message));
+    });
+  }
 }

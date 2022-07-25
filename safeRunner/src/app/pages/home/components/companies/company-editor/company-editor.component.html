@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="header">
-    <div class="heading"><span *ngIf="!isEditMode">Add</span><span *ngIf="isEditMode">Edit</span> Employee for {{company.name}}</div>
+    <div class="heading"><span *ngIf="!isEditMode">Add</span><span *ngIf="isEditMode">Edit</span> Organization</div>
     <div (click)="CloseDialog()" class="close-icon">
       <i class="fa-regular fa-rectangle-xmark fa-2x"></i>
     </div>
@@ -11,18 +11,13 @@
   <div class="content">
 
     <div class="input-field">
-      <span>Employee Name</span>
-      <input class="input" [(ngModel)]="employee.name" type="text" placeholder="Enter employee Name...">
+      <span>Organization Name</span>
+      <input class="input" [(ngModel)]="company.name" type="text" placeholder="Enter employee Name...">
     </div>
     <div class="input-field">
-      <span>Employee Email</span>
-      <input [disabled]="isEditMode" [(ngModel)]="employee.email" class="input" type="text"
+      <span>Organization Email</span>
+      <input [(ngModel)]="company.email" class="input" type="text"
         placeholder="Enter your email...">
-    </div>
-    <div class="input-field">
-      <span>Company Name</span>
-      <input disabled value="{{company.name}}" class="input" type="text"
-        placeholder="Enter Company Name...">
     </div>
   </div>
 

@@ -14,6 +14,10 @@ export class Company {
   createdDate!: Date;
   employeesCount!: Number;
   trucksCount!: Number;
+  constructor() {
+    this.name = '';
+    this.email = '';
+  }
 }
 
 export class Vehicle {

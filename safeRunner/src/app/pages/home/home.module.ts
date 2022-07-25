@@ -5,11 +5,13 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompaniesComponent } from './components/companies/companies.component';
+import { CompanyEditorComponent } from './components/companies/company-editor/company-editor.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    CompanyEditorComponent
   ],
   imports: [
     CommonModule,
