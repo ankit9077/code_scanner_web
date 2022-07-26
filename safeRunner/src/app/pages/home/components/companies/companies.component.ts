@@ -1,3 +1,4 @@
+import { PAGE_SIZE } from './../../../../../assets/constants';
 import { CompanyEditorComponent } from './company-editor/company-editor.component';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
@@ -20,7 +21,7 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit(): void {
     this.isloading = true;
-    this.companyService.GetCompanyList().then((response)=>{
+    this.companyService.GetCompanyList(0, PAGE_SIZE).then((response)=>{
       this.isloading = false;
     },(err)=>{
       this.isloading = false;

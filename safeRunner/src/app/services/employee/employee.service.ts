@@ -12,9 +12,9 @@ export class EmployeeService {
 
   constructor(private httpService: HttpService) { }
 
-  public GetEmployeeListByCompanyId(): Promise<any> {
+  public GetEmployeeListByCompanyId(pageIndex: number, pageSize: number): Promise<any> {
     return new Promise((resolve, reject)=>{
-      this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid).subscribe((response: any)=>{
+      this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid+`?index=${pageIndex}&size=${pageSize}`).subscribe((response: any)=>{
         this.employees = response.result;
         resolve(response.result);
       },(err)=>{

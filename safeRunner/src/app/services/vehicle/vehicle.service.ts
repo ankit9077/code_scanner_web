@@ -12,9 +12,9 @@ export class VehicleService {
 
   constructor(private httpService: HttpService) { }
 
-  public GetVehicleListByCompanyId(): Promise<any> {
+  public GetVehicleListByCompanyId(pageIndex: number, pageSize: number): Promise<any> {
     return new Promise((resolve, reject)=>{
-      this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid).subscribe((response: any)=>{
+      this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid+`?index=${pageIndex}&size=${pageSize}`).subscribe((response: any)=>{
         this.vehicles = response.result;
         resolve(response.result);
       },(err)=>{

@@ -1,3 +1,4 @@
+import { PAGE_SIZE } from './../../../../../../assets/constants';
 import { EmployeeEditorComponent } from './employee-editor/employee-editor.component';
 import { MatDialog } from '@angular/material';
 import { EmployeeService } from './../../../../../services/employee/employee.service';
@@ -19,7 +20,7 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.employeeService.GetEmployeeListByCompanyId().then((response)=>{
+    this.employeeService.GetEmployeeListByCompanyId(0, PAGE_SIZE).then((response)=>{
       this.isLoading = false;
     },(err)=>{
       this.isLoading = false;

@@ -1,3 +1,4 @@
+import { PAGE_SIZE } from './../../../../../../assets/constants';
 import { QrCodesComponent } from './../qr-codes/qr-codes.component';
 import { VehicleEditorComponent } from './../vehicle-editor/vehicle-editor.component';
 import { Vehicle } from './../../../../../../assets/models';
@@ -21,7 +22,7 @@ export class VehicleComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.vehicleService.GetVehicleListByCompanyId().then((response)=>{
+    this.vehicleService.GetVehicleListByCompanyId(0,PAGE_SIZE).then((response)=>{
       this.isLoading = false;
     },(err)=>{
       this.isLoading = false;

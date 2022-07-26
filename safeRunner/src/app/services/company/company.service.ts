@@ -12,9 +12,9 @@ export class CompanyService {
 
   constructor(private httpService: HttpService) { }
 
-  public GetCompanyList(): Promise<any> {
+  public GetCompanyList(pageIndex: number, pageSize: number): Promise<any> {
     return new Promise((resolve, reject)=>{
-      this.httpService.Get(this.baseUrl+'/list').subscribe((response: any)=>{
+      this.httpService.Get(this.baseUrl+`/list?index=${pageIndex}&size=${pageSize}`).subscribe((response: any)=>{
         this.companies = response.result;
         resolve(response.result);
       },(err)=>{
