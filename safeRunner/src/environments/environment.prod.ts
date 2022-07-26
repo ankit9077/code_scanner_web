@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  api: 'http://localhost:3000/api'
+  api: 'https://safe-runner.herokuapp.com/api'
+  // api: 'http://localhost:3000/api'
 };

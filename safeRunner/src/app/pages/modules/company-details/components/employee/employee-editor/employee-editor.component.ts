@@ -1,10 +1,9 @@
 import { emailRegex } from 'src/assets/constants';
-import { Employee } from './../../../../../../../../dist/safeRunner/assets/models';
 import { EmployeeService } from './../../../../../../services/employee/employee.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { CompanyService } from 'src/app/services/company/company.service';
-import { Company } from 'src/assets/models';
+import { Company, Employee } from 'src/assets/models';
 
 @Component({
   selector: 'app-employee-editor',
