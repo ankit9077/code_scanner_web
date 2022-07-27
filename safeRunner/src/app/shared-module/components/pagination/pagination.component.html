@@ -1,0 +1,32 @@
+<div class="pagination-container">
+  <div class="item" (click)="ChangePageIndex(indexOptions[0])" [class.disabled]="selectedIndex===0">
+    <div class="icons">
+      <i class="fa-solid fa-angles-left"></i>
+    </div>
+  </div>
+  <div class="item" (click)="ChangePageIndex(selectedIndex-1)" [class.disabled]="selectedIndex===0">
+    <div class="icons">
+      <i class="fa-solid fa-angle-left"></i>
+    </div>
+  </div>
+
+  <ng-container *ngFor="let item of indexOptions">
+    <div class="item" (click)="ChangePageIndex(item)">
+      <div class="icons active" [class.active]="item===selectedIndex">
+        {{item + 1}}
+      </div>
+    </div>
+  </ng-container>
+
+
+  <div class="item" (click)="ChangePageIndex(selectedIndex+1)" [class.disabled]="selectedIndex===indexOptions[indexOptions.length-1]">
+    <div class="icons">
+      <i class="fa-solid fa-angle-right"></i>
+    </div>
+  </div>
+  <div (click)="ChangePageIndex(indexOptions[indexOptions.length-1])" class="item" [class.disabled]="selectedIndex===indexOptions[indexOptions.length-1]">
+    <div class="icons">
+      <i class="fa-solid fa-angles-right"></i>
+    </div>
+  </div>
+</div>

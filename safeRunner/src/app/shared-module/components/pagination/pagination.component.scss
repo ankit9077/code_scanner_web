@@ -1,0 +1,29 @@
+.pagination-container {
+  display: flex;
+  align-items: center;
+  width: inherit;
+  justify-content: left;
+  .item {
+    cursor: pointer;
+    margin-right: 2px;
+    .icons {
+      border: solid;
+      padding: 2px 5px;
+      border-radius: 5px;
+      &.active {
+        background-color: #3b56c4;
+        color: white;
+        border-color: black;
+      }
+    }
+    :hover {
+      background-color: #3b56c4;
+      color: white;
+      border-color: black;
+    }
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}

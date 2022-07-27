@@ -1,3 +1,4 @@
+import { SharedModule } from './../../../shared-module/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
@@ -27,7 +28,8 @@ import { EmployeeEditorComponent } from './components/employee/employee-editor/e
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    QRCodeModule
+    QRCodeModule,
+    SharedModule
   ],
   entryComponents: [
     VehicleEditorComponent,

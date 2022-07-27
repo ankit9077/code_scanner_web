@@ -27,4 +27,8 @@
       </td>
     </tr>
   </table>
+
+  <div class="footer">
+    <app-pagination [selectedIndex]="pageIndex" [totalCount]="totalCount" (indexOnChange)="onIndexChange($event)"></app-pagination>
+  </div>
 </div>

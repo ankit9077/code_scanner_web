@@ -16,16 +16,28 @@ export class CompaniesComponent implements OnInit {
   get Companies(): Array<Company>{
     return this.companyService.companies;
   }
+  pageIndex = 0;
+  totalCount = 0;
 
   constructor(private companyService: CompanyService, private router: Router, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.GetCompanyList();
+  }
+
+  GetCompanyList(){
     this.isloading = true;
-    this.companyService.GetCompanyList(0, PAGE_SIZE).then((response)=>{
+    this.companyService.GetCompanyList(this.pageIndex, PAGE_SIZE).then((response)=>{
+      this.totalCount = response.totalCount;
       this.isloading = false;
     },(err)=>{
       this.isloading = false;
     });
+  }
+
+  onIndexChange(value: number){
+    this.pageIndex = value;
+    this.GetCompanyList();
   }
 
   OpenCompanyDetails(id: String) {

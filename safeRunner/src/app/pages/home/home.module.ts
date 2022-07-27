@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared-module/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +20,8 @@ import { CompanyEditorComponent } from './components/companies/company-editor/co
     MatDialogModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

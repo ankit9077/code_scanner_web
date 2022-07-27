@@ -17,16 +17,28 @@ export class VehicleComponent implements OnInit {
   get Vehicles(): Array<Vehicle>{
     return this.vehicleService.vehicles;
   }
+  pageIndex = 0;
+  totalCount = 0;
 
   constructor(private vehicleService: VehicleService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.GetVehicleList();
+  }
+
+  GetVehicleList(){
     this.isLoading = true;
-    this.vehicleService.GetVehicleListByCompanyId(0,PAGE_SIZE).then((response)=>{
+    this.vehicleService.GetVehicleListByCompanyId(this.pageIndex,PAGE_SIZE).then((response)=>{
+      this.totalCount = response.totalCount;
       this.isLoading = false;
     },(err)=>{
       this.isLoading = false;
     });
+  }
+
+  onIndexChange(value: number){
+    this.pageIndex = value;
+    this.GetVehicleList();
   }
 
   GetMomentDate(date: Date): string {

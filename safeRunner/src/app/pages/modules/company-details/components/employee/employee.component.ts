@@ -15,16 +15,28 @@ export class EmployeeComponent implements OnInit {
   get Employees(): Array<Employee>{
     return this.employeeService.employees;
   }
+  pageIndex = 0;
+  totalCount = 0;
 
   constructor(private employeeService: EmployeeService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.GetEmployeesList();
+  }
+
+  GetEmployeesList(){
     this.isLoading = true;
-    this.employeeService.GetEmployeeListByCompanyId(0, PAGE_SIZE).then((response)=>{
+    this.employeeService.GetEmployeeListByCompanyId(this.pageIndex, PAGE_SIZE).then((response)=>{
+      this.totalCount = response.totalCount;
       this.isLoading = false;
     },(err)=>{
       this.isLoading = false;
     });
+  }
+
+  onIndexChange(value: number){
+    this.pageIndex = value;
+    this.GetEmployeesList();
   }
 
   GetMomentDate(date: Date): string {

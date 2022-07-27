@@ -16,7 +16,7 @@ export class VehicleService {
     return new Promise((resolve, reject)=>{
       this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid+`?index=${pageIndex}&size=${pageSize}`).subscribe((response: any)=>{
         this.vehicles = response.result;
-        resolve(response.result);
+        resolve(response);
       },(err)=>{
         reject(err.message);
       });

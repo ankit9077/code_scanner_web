@@ -16,7 +16,7 @@ export class CompanyService {
     return new Promise((resolve, reject)=>{
       this.httpService.Get(this.baseUrl+`/list?index=${pageIndex}&size=${pageSize}`).subscribe((response: any)=>{
         this.companies = response.result;
-        resolve(response.result);
+        resolve(response);
       },(err)=>{
         reject(err.message);
       });

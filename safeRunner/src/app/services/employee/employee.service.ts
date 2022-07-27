@@ -16,7 +16,7 @@ export class EmployeeService {
     return new Promise((resolve, reject)=>{
       this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid+`?index=${pageIndex}&size=${pageSize}`).subscribe((response: any)=>{
         this.employees = response.result;
-        resolve(response.result);
+        resolve(response);
       },(err)=>{
         reject(err.message);
       });
