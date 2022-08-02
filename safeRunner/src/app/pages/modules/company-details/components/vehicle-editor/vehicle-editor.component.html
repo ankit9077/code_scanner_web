@@ -1,28 +1,32 @@
 <div class="container">
 
   <div class="header">
-    <div class="heading"><span *ngIf="!isEditMode">Add</span><span *ngIf="isEditMode">Edit</span> Vehicle for {{company.name}}</div>
+    <div class="heading"><span *ngIf="!isEditMode">Add</span><span *ngIf="isEditMode">Edit</span> Vehicle</div>
     <div (click)="CloseDialog()" class="close-icon">
       <i class="fa-regular fa-rectangle-xmark fa-2x"></i>
     </div>
   </div>
 
-  <!-- <app-loader *ngIf="isLoading" style="height: 100vh;width:100vw;"></app-loader> -->
   <div class="content">
 
-    <div class="input-field">
-      <span>Vehicle Name</span>
-      <input class="input" [(ngModel)]="vehicle.name" type="text" placeholder="Enter vehicle Name...">
-    </div>
-    <div class="input-field">
-      <span>Plate Number</span>
-      <input [(ngModel)]="vehicle.plateNumber" class="input" type="text"
-        placeholder="Enter Plate Number...">
-    </div>
     <div class="input-field">
       <span>Company Name</span>
       <input disabled value="{{company.name}}" class="input" type="text"
         placeholder="Enter Company Name...">
+    </div>
+    <div class="input-field">
+      <span>Vehicle Name</span>
+      <input class="input" [(ngModel)]="vehicle.name" type="text" placeholder="Enter vehicle Name...">
+    </div>
+    <div class="check-box">
+      <span>Use on Multiple Vehicles</span>
+      <input [(ngModel)]="vehicle.isMultiUsage" class="input" type="checkbox"
+        placeholder="Enter Plate Number...">
+    </div>
+    <div *ngIf="!vehicle.isMultiUsage" class="input-field">
+      <span>Plate Number</span>
+      <input [(ngModel)]="vehicle.plateNumber" class="input" type="text"
+        placeholder="Enter Plate Number...">
     </div>
   </div>
 

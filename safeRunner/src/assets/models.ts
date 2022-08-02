@@ -28,9 +28,11 @@ export class Vehicle {
   companyGuid!: String;
   createdDate!: Date;
   qrCodes!: Array<QrCodes>;
+  isMultiUsage!: boolean;
   constructor(){
     this.name='';
     this.plateNumber='';
+    this.isMultiUsage = false
   }
 }
 

@@ -59,6 +59,7 @@ export class QrCodesComponent implements OnInit {
     if(this.CheckValidationForCodes()){
       this.isLoading = true;
       this.vehicleService.UpdateQrCodes(this.QRCodes,this.vehicle.guid).then((response)=>{
+        response.qrCodes = this.QRCodes;
         this.dialogRef.close(response)
       },(err)=>{
         this.errorMessage = err;

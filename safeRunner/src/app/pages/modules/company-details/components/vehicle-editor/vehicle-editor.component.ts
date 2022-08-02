@@ -60,9 +60,15 @@ export class VehicleEditorComponent implements OnInit {
 
   CheckFormValidation(): boolean {
     this.errorMessage = '';
-    if (!this.vehicle.name.trim().length || !this.vehicle.plateNumber.trim().length) {
-      this.errorMessage = 'Please fill all the fields';
+
+    if(!this.vehicle.isMultiUsage){
+      if (!this.vehicle.name.trim().length || !this.vehicle.plateNumber.trim().length) {
+        this.errorMessage = 'Please fill all the fields';
+      }
+    }else if(!this.vehicle.name.trim().length){
+      this.errorMessage = 'Please fill name of the vehicle';
     }
+
     return this.errorMessage.length === 0;
   }
 
