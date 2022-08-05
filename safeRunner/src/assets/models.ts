@@ -54,3 +54,11 @@ export class QrCodes {
   title!: String;
   codeInfo!: String;
 }
+
+export class AlertConfig {
+  
+  title!: String;
+  header!: String;
+  warning!: String;
+  buttons!:{confirm: String, cancel: String};
+}
