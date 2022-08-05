@@ -46,4 +46,16 @@ export class EmployeeService {
       }, err => reject(err.message));
     });
   }
+
+  public DeleteEmployeeById(employeeGuid: String): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.httpService.Delete(this.baseUrl + '/delete/' + employeeGuid).subscribe((response: any) => {
+        if (response.statusCode === 200) {
+          resolve(response.result);
+        } else {
+          reject(response.message);
+        }
+      }, err => reject(err.message));
+    });
+  }
 }

@@ -1,0 +1,17 @@
+<span class="close" (click)="closeDialog(false)">×</span>
+<div class="container">
+  <form class="modal-content">
+    <div class="container">
+      <span>
+        <h1>{{alertConfig.header}}</h1>
+        <p>{{alertConfig.title}}</p>
+      </span>
+
+      <div class="clearfix">
+        <button type="button" (click)="closeDialog(false)" class="cancelbtn">{{alertConfig.buttons.cancel}}</button>
+        <button type="button" (click)="closeDialog(true)" class="deletebtn">{{alertConfig.buttons.confirm}}</button>
+      </div>
+    </div>
+  </form>
+  <span *ngIf="alertConfig.warning.length" class="warning"><b>Warning:</b> {{alertConfig.warning}}</span>
+</div>

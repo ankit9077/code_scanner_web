@@ -1,3 +1,4 @@
+import { ConfirmationBoxComponent } from './../../../../shared-module/components/confirmation-box/confirmation-box.component';
 import { PAGE_SIZE } from './../../../../../assets/constants';
 import { CompanyEditorComponent } from './company-editor/company-editor.component';
 import { MatDialog } from '@angular/material';
@@ -69,6 +70,37 @@ export class CompaniesComponent implements OnInit {
         this.companyService.companies[index] = res;
       }
     });
+  }
+
+  OpenConfirmBoxForDelete(company: Company, index: number){
+    const confirmationBoxInstance = this.matDialog.open(ConfirmationBoxComponent, {
+      height: '200px',
+      width: '400px',
+    });
+    confirmationBoxInstance.componentInstance.alertConfig={
+      header:`Delete Company`,
+      title:`Are you sure you want to delete "${company.name}"?`,
+      warning:``,
+      buttons:{confirm:'Delete',cancel:'Cancel'}
+    };
+    confirmationBoxInstance.beforeClosed().subscribe((res)=>{
+      if(res){
+        this.isloading = true;
+        this.companyService.DeleteCompanyById(company.guid).then((res)=>{
+          this.isloading = false;
+          if(this.companyService.companies.length>=1){
+            this.companyService.companies.splice(index,1);
+            this.totalCount--;
+          }
+          if(this.companyService.companies.length===0 && this.totalCount>0){
+            this.pageIndex = 0;
+            this.GetCompanyList();
+          }
+        },(err)=>{
+          this.isloading = false;
+        });
+      }
+    })
   }
 
   GetMomentDate(date: Date): string {

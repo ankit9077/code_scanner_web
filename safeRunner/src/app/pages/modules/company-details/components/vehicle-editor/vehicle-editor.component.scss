@@ -32,6 +32,19 @@
         width: 100%;
       }
     }
+    .close {
+      cursor: pointer;
+      position: absolute;
+      right: 35px;
+      font-size: 60px;
+      font-weight: bold;
+      color: #f1f1f1;
+    }
+    .close:hover,
+    .close:focus {
+      color: #f44336;
+      cursor: pointer;
+    }
   }
 
 

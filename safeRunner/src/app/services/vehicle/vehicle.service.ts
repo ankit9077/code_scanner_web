@@ -59,4 +59,16 @@ export class VehicleService {
       }, err => reject(err.message));
     });
   }
+
+  public DeleteVehicleById(vehicleGuid: String): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.httpService.Delete(this.baseUrl + '/delete/' + vehicleGuid).subscribe((response: any) => {
+        if (response.statusCode === 200) {
+          resolve(response.result);
+        } else {
+          reject(response.message);
+        }
+      }, err => reject(err.message));
+    });
+  }
 }

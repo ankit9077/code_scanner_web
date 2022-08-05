@@ -7,6 +7,7 @@ import { VehicleService } from './../../../../../services/vehicle/vehicle.servic
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import * as moment from 'moment';
+import { ConfirmationBoxComponent } from 'src/app/shared-module/components/confirmation-box/confirmation-box.component';
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
@@ -83,6 +84,37 @@ export class VehicleComponent implements OnInit {
         this.vehicleService.vehicles[index] = vehicle;
       }
     });
+  }
+
+  OpenConfirmBoxForDelete(vehicle: Vehicle, index: number){
+    const confirmationBoxInstance = this.matDialog.open(ConfirmationBoxComponent, {
+      height: '200px',
+      width: '400px',
+    });
+    confirmationBoxInstance.componentInstance.alertConfig={
+      header:`Delete Vehicle`,
+      title:`Are you sure you want to delete "${vehicle.name}"?`,
+      warning:``,
+      buttons:{confirm:'Delete',cancel:'Cancel'}
+    };
+    confirmationBoxInstance.beforeClosed().subscribe((res)=>{
+      if(res){
+        this.isLoading = true;
+        this.vehicleService.DeleteVehicleById(vehicle.guid).then((res)=>{
+          this.isLoading = false;
+          if(this.vehicleService.vehicles.length>=1){
+            this.vehicleService.vehicles.splice(index,1);
+            this.totalCount--;
+          }
+          if(this.vehicleService.vehicles.length===0 && this.totalCount>0){
+            this.pageIndex = 0;
+            this.GetVehicleList();
+          }
+        },(err)=>{
+          this.isLoading = false;
+        });
+      }
+    })
   }
 
 }

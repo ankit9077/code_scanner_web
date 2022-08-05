@@ -51,9 +51,12 @@ export class LoginComponent implements OnInit {
         const user = new User();
         user.email = this.formValues.email.value.trim();
         user.password = this.formValues.password.value;
+        this.isLoading = true;
         this.authenticationService.AuthenticateUser(user).then((response) => {
+        this.isLoading = false;
           this.router.navigate(['home']);
         }, (err) => {
+          this.isLoading = false;
           this.errorMessage = err.error.message;
         });
       } else {

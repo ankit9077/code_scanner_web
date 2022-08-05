@@ -5,6 +5,7 @@ import { EmployeeService } from './../../../../../services/employee/employee.ser
 import { Employee } from './../../../../../../assets/models';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { ConfirmationBoxComponent } from 'src/app/shared-module/components/confirmation-box/confirmation-box.component';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -70,4 +71,34 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+  OpenConfirmBoxForDelete(employee: Employee, index: number){
+    const confirmationBoxInstance = this.matDialog.open(ConfirmationBoxComponent, {
+      height: '200px',
+      width: '400px',
+    });
+    confirmationBoxInstance.componentInstance.alertConfig={
+      header:`Delete Employee`,
+      title:`Are you sure you want to delete "${employee.name}"?`,
+      warning:``,
+      buttons:{confirm:'Delete',cancel:'Cancel'}
+    };
+    confirmationBoxInstance.beforeClosed().subscribe((res)=>{
+      if(res){
+        this.isLoading = true;
+        this.employeeService.DeleteEmployeeById(employee.guid).then((res)=>{
+          this.isLoading = false;
+          if(this.employeeService.employees.length>=1){
+            this.employeeService.employees.splice(index,1);
+            this.totalCount--;
+          }
+          if(this.employeeService.employees.length===0 && this.totalCount>0){
+            this.pageIndex = 0;
+            this.GetEmployeesList();
+          }
+        },(err)=>{
+          this.isLoading = false;
+        });
+      }
+    })
+  }
 }

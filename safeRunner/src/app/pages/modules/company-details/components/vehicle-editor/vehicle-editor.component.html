@@ -2,9 +2,8 @@
 
   <div class="header">
     <div class="heading"><span *ngIf="!isEditMode">Add</span><span *ngIf="isEditMode">Edit</span> Vehicle</div>
-    <div (click)="CloseDialog()" class="close-icon">
-      <i class="fa-regular fa-rectangle-xmark fa-2x"></i>
-    </div>
+    <div (click)="CloseDialog()" class="close">×</div>
+
   </div>
 
   <div class="content">

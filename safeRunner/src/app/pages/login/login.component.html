@@ -19,12 +19,7 @@
                formControlName="password" type="password" placeholder="Enter Password...">
           </div>
           <div class="footer">
-              <button class="login-button">Login</button>
-              <!-- <span class="footer-text">
-                  <span class="account-text">Do not have an Account? </span>
-                  <u><b class="link" [routerLink]="['/signup']">SignUp</b></u>
-              </span> -->
-
+              <button [disabled]="isLoading" class="login-button">Login</button>
               <span class="footer-text" style="text-align: center;" >
               <u><b class="link" [routerLink]="['/forgot-password']">Forgot Password</b></u>
               </span>
