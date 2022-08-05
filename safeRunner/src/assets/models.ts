@@ -56,7 +56,6 @@ export class QrCodes {
 }
 
 export class AlertConfig {
-  
   title!: String;
   header!: String;
   warning!: String;

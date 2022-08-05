@@ -53,4 +53,37 @@ body {
     margin: 0px;
   }
 
+  .snackbar-success {
+    color:#198754;
+    border: solid;
+    background-color: #E9F7EF;
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0px;
+    border-width: 8px;
+  }
+
+  .snackbar-danger {
+    color:#dc3545;
+    border: solid;
+    background-color: #F9EBEA;
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0px;
+    border-width: 8px;
+  }
+
+  .mat-simple-snackbar-action{
+    .mat-button {
+      .mat-button-wrapper{
+        font-size: 40px;
+      }
+      &.success{
+        color: #198754;
+      }
+    }
+  }
+
 }
