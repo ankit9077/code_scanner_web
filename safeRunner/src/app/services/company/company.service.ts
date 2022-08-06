@@ -1,3 +1,4 @@
+import { ToastService } from './../toast/toast.service';
 import { Company } from './../../../assets/models';
 import { HttpService } from './../http/http.service';
 import { Injectable } from '@angular/core';
@@ -10,7 +11,7 @@ export class CompanyService {
   companies: Array<Company> = [];
   company!: Company;
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private toastService: ToastService) { }
 
   public GetCompanyList(pageIndex: number, pageSize: number): Promise<any> {
     return new Promise((resolve, reject)=>{
@@ -38,6 +39,7 @@ export class CompanyService {
     return new Promise((resolve, reject) => {
       this.httpService.Post(this.baseUrl + '/create', company).subscribe((response: any) => {
         if (response.statusCode === 201) {
+          this.toastService.success(response.message);
           resolve(response.result);
         } else {
           reject(response.message);
@@ -50,6 +52,7 @@ export class CompanyService {
     return new Promise((resolve, reject) => {
       this.httpService.Post(this.baseUrl + '/update', company).subscribe((response: any) => {
         if (response.statusCode === 200) {
+          this.toastService.success(response.message);
           resolve(response.result);
         } else {
           reject(response.message);
@@ -62,8 +65,10 @@ export class CompanyService {
     return new Promise((resolve, reject) => {
       this.httpService.Delete(this.baseUrl + '/delete/' + companyguid).subscribe((response: any) => {
         if (response.statusCode === 200) {
+          this.toastService.success(response.message);
           resolve(response.result);
         } else {
+          this.toastService.error(response.message);
           reject(response.message);
         }
       }, err => reject(err.error.message));

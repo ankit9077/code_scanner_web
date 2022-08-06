@@ -1,9 +1,9 @@
 <div class="container">
   <div class="header">
-    <button (click)="AddNewOrganization()">Add New Organization <i class="fa-solid fa-plus"></i></button>
+    <button (click)="AddNewOrganization()">Add New Company <i class="fa-solid fa-plus"></i></button>
   </div>
 
-  <table>
+  <table *ngIf="!isloading && Companies.length">
     <tr>
       <th>Sr.</th>
       <th>Name</th>
@@ -26,7 +26,12 @@
       </td>
     </tr>
   </table>
-  <div class="footer">
+
+  <div class="empty-state" *ngIf="!isloading && Companies.length===0">
+    <h2>You have no companies to show!</h2>
+    <span>Please click on the button above to add new company.</span>
+  </div>
+  <div class="footer" *ngIf="Companies.length">
     <app-pagination [selectedIndex]="pageIndex" [totalCount]="totalCount" (indexOnChange)="onIndexChange($event)"></app-pagination>
   </div>
 </div>

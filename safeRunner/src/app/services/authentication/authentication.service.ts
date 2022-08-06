@@ -1,3 +1,4 @@
+import { ToastService } from './../toast/toast.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/assets/models';
@@ -9,7 +10,7 @@ import { HttpService } from '../http/http.service';
 export class AuthenticationService {
 
   baseUrl = '/user';
-  constructor(private httpService: HttpService, private router: Router) { }
+  constructor(private httpService: HttpService, private router: Router, private toastService: ToastService) { }
 
   public AuthenticateUser(user: User): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -39,7 +40,8 @@ export class AuthenticationService {
 
   public ForgotPassword(email: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.httpService.Post(this.baseUrl + '/forgot-password', { email }).subscribe((response) => {
+      this.httpService.Post(this.baseUrl + '/forgot-password', { email }).subscribe((response: any) => {
+        this.toastService.success(response.message);
         resolve(response);
       }, (err: any) => {
         reject(err);
@@ -50,7 +52,8 @@ export class AuthenticationService {
   public ResetPassword(token: string, password: string): Promise<any> {
     password = window.btoa(password);
     return new Promise((resolve, reject) => {
-      this.httpService.Post(this.baseUrl + '/reset-password', { token, password }).subscribe((response) => {
+      this.httpService.Post(this.baseUrl + '/reset-password', { token, password }).subscribe((response: any) => {
+        this.toastService.success(response.message);
         resolve(response);
       }, (err: any) => {
         reject(err);

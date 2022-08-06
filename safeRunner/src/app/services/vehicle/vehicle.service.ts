@@ -1,3 +1,4 @@
+import { ToastService } from './../toast/toast.service';
 import { Vehicle, QrCodes } from './../../../assets/models';
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
@@ -10,7 +11,7 @@ export class VehicleService {
   vehicles: Array<Vehicle> = [];
   companyGuid: String = '';
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private toastService: ToastService) { }
 
   public GetVehicleListByCompanyId(pageIndex: number, pageSize: number): Promise<any> {
     return new Promise((resolve, reject)=>{
@@ -27,6 +28,7 @@ export class VehicleService {
     return new Promise((resolve, reject) => {
       this.httpService.Post(this.baseUrl + '/create/'+this.companyGuid, vehicle).subscribe((response: any) => {
         if (response.statusCode === 201) {
+          this.toastService.success(response.message);
           resolve(response.result);
         } else {
           reject(response.message);
@@ -39,6 +41,7 @@ export class VehicleService {
     return new Promise((resolve, reject) => {
       this.httpService.Post(this.baseUrl + '/update/'+this.companyGuid, vehicle).subscribe((response: any) => {
         if (response.statusCode === 200) {
+          this.toastService.success(response.message);
           resolve(response.result);
         } else {
           reject(response.message);
@@ -52,6 +55,7 @@ export class VehicleService {
     return new Promise((resolve, reject) => {
       this.httpService.Post(this.baseUrl + '/saveCodes/'+ vehicleId, {qrCodes: qrCodes}).subscribe((response: any) => {
         if (response.statusCode === 200) {
+          this.toastService.success(response.message);
           resolve(response.result);
         } else {
           reject(response.message);
@@ -64,8 +68,10 @@ export class VehicleService {
     return new Promise((resolve, reject) => {
       this.httpService.Delete(this.baseUrl + '/delete/' + vehicleGuid).subscribe((response: any) => {
         if (response.statusCode === 200) {
+          this.toastService.success(response.message);
           resolve(response.result);
         } else {
+          this.toastService.error(response.message);
           reject(response.message);
         }
       }, err => reject(err.error.message));

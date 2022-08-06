@@ -6,7 +6,7 @@
     <button (click)="AddNewVehicle()">Add New Vehicle <i class="fa-solid fa-plus"></i></button>
   </div>
 
-  <table>
+  <table *ngIf="!isLoading && Vehicles.length">
     <tr>
       <th>Sr.</th>
       <th>Name</th>
@@ -29,7 +29,13 @@
       </td>
     </tr>
   </table>
-  <div class="footer">
+
+  <div class="empty-state" *ngIf="!isLoading && Vehicles.length===0">
+    <h2>You have no vehicles to show!</h2>
+    <span>Please click on the button above to add new vehicle.</span>
+  </div>
+
+  <div class="footer" *ngIf="Vehicles.length">
     <app-pagination [selectedIndex]="pageIndex" [totalCount]="totalCount" (indexOnChange)="onIndexChange($event)"></app-pagination>
   </div>
 </div>
