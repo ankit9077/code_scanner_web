@@ -20,7 +20,7 @@ export class UserService {
         this.user = response.result;
         resolve(response.result);
       }, (err) => {
-        reject(err.message);
+        reject(err.error.message);
         localStorage.clear();
         this.router.navigate(['login']);
       });

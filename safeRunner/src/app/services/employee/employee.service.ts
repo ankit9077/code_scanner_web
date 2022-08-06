@@ -18,7 +18,7 @@ export class EmployeeService {
         this.employees = response.result;
         resolve(response);
       },(err)=>{
-        reject(err.message);
+        reject(err.error.message);
       });
     });
   }
@@ -31,7 +31,7 @@ export class EmployeeService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 
@@ -43,7 +43,7 @@ export class EmployeeService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 
@@ -55,7 +55,7 @@ export class EmployeeService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 }

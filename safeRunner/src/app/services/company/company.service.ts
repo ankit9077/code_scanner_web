@@ -18,7 +18,7 @@ export class CompanyService {
         this.companies = response.result;
         resolve(response);
       },(err)=>{
-        reject(err.message);
+        reject(err.error.message);
       });
     });
   }
@@ -29,7 +29,7 @@ export class CompanyService {
         this.company = response.result;
         resolve(response.result);
       },(err)=>{
-        reject(err.message);
+        reject(err.error.message);
       });
     });
   }
@@ -42,7 +42,7 @@ export class CompanyService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 
@@ -54,7 +54,7 @@ export class CompanyService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 
@@ -66,7 +66,7 @@ export class CompanyService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 }

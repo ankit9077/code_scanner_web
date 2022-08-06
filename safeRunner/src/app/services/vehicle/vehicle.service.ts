@@ -18,7 +18,7 @@ export class VehicleService {
         this.vehicles = response.result;
         resolve(response);
       },(err)=>{
-        reject(err.message);
+        reject(err.error.message);
       });
     });
   }
@@ -31,7 +31,7 @@ export class VehicleService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 
@@ -43,7 +43,7 @@ export class VehicleService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 
@@ -56,7 +56,7 @@ export class VehicleService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 
@@ -68,7 +68,7 @@ export class VehicleService {
         } else {
           reject(response.message);
         }
-      }, err => reject(err.message));
+      }, err => reject(err.error.message));
     });
   }
 }
