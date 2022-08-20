@@ -35,7 +35,7 @@
 
   <div class="empty-state" *ngIf="!isloading && Companies.length===0">
     <h2>You have no companies to show!</h2>
-    <span>Please click on the button above to add new company.</span>
+    <span>Please clear search bar OR click on the button above to add new company.</span>
   </div>
   <div class="footer" *ngIf="Companies.length">
     <app-pagination [selectedIndex]="pageIndex" [totalCount]="totalCount" (indexOnChange)="onIndexChange($event)"></app-pagination>
