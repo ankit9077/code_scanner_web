@@ -11,7 +11,7 @@
       <th>Sr.</th>
       <th>Name</th>
       <th>Email</th>
-      <th>Is Verified</th>
+      <!-- <th>Is Verified</th> -->
       <th>Created On</th>
       <th>Action</th>
     </tr>
@@ -19,7 +19,7 @@
       <td>{{i+1}}</td>
       <td>{{item.name}}</td>
       <td>{{item.email}}</td>
-      <td>{{item.isVerified}}</td>
+      <!-- <td>{{item.isVerified}}</td> -->
       <td>{{GetMomentDate(item.createdDate)}}</td>
       <td>
         <span><i (click)="EditEmployee(item,i)" class="fa-solid fa-pen-to-square"></i></span>
