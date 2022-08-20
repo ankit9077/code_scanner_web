@@ -1,9 +1,17 @@
 <div class="container">
   <div class="header">
-    <div class="back-icon">
-      <i [routerLink]="['/home/company']" class="fa-solid fa-circle-arrow-left fa-2x"></i>
+    <div class="back-search-header">
+      <div class="back-icon">
+        <i [routerLink]="['/home/company']" class="fa-solid fa-circle-arrow-left fa-2x"></i>
+      </div>
+      <div class="search-container">
+        <div class="search-bar">
+          <input type="text" [(ngModel)]="searchText" placeholder="Search..">
+          <button (click)="onSearched()" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
     </div>
-    <button (click)="AddNewEmployee()">Add New Employee <i class="fa-solid fa-plus"></i></button>
+    <button class="add-btn" (click)="AddNewEmployee()">Add New Employee <i class="fa-solid fa-plus"></i></button>
   </div>
 
   <table *ngIf="!isLoading && Employees.length">

@@ -13,9 +13,9 @@ export class EmployeeService {
 
   constructor(private httpService: HttpService, private toastService: ToastService) { }
 
-  public GetEmployeeListByCompanyId(pageIndex: number, pageSize: number): Promise<any> {
+  public GetEmployeeListByCompanyId(pageIndex: number, pageSize: number, searchText: string): Promise<any> {
     return new Promise((resolve, reject)=>{
-      this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid+`?index=${pageIndex}&size=${pageSize}`).subscribe((response: any)=>{
+      this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid+`?index=${pageIndex}&size=${pageSize}&search=${searchText}`).subscribe((response: any)=>{
         this.employees = response.result;
         resolve(response);
       },(err)=>{

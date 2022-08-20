@@ -1,7 +1,7 @@
-import { ToastService } from './../toast/toast.service';
 import { Vehicle, QrCodes } from './../../../assets/models';
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +13,9 @@ export class VehicleService {
 
   constructor(private httpService: HttpService, private toastService: ToastService) { }
 
-  public GetVehicleListByCompanyId(pageIndex: number, pageSize: number): Promise<any> {
+  public GetVehicleListByCompanyId(pageIndex: number, pageSize: number, searchText: string): Promise<any> {
     return new Promise((resolve, reject)=>{
-      this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid+`?index=${pageIndex}&size=${pageSize}`).subscribe((response: any)=>{
+      this.httpService.Get(this.baseUrl+'/list/'+this.companyGuid+`?index=${pageIndex}&size=${pageSize}&search=${searchText}`).subscribe((response: any)=>{
         this.vehicles = response.result;
         resolve(response);
       },(err)=>{

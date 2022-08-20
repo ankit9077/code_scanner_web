@@ -20,6 +20,7 @@ export class VehicleComponent implements OnInit {
   }
   pageIndex = 0;
   totalCount = 0;
+  searchText = '';
 
   constructor(private vehicleService: VehicleService, private matDialog: MatDialog) { }
 
@@ -29,7 +30,7 @@ export class VehicleComponent implements OnInit {
 
   GetVehicleList(){
     this.isLoading = true;
-    this.vehicleService.GetVehicleListByCompanyId(this.pageIndex,PAGE_SIZE).then((response)=>{
+    this.vehicleService.GetVehicleListByCompanyId(this.pageIndex,PAGE_SIZE, this.searchText).then((response)=>{
       this.totalCount = response.totalCount;
       this.isLoading = false;
     },(err)=>{
@@ -39,6 +40,11 @@ export class VehicleComponent implements OnInit {
 
   onIndexChange(value: number){
     this.pageIndex = value;
+    this.GetVehicleList();
+  }
+
+  onSearched(){
+    this.pageIndex = 0;
     this.GetVehicleList();
   }
 

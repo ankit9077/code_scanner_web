@@ -18,6 +18,7 @@ export class EmployeeComponent implements OnInit {
   }
   pageIndex = 0;
   totalCount = 0;
+  searchText = '';
 
   constructor(private employeeService: EmployeeService, private matDialog: MatDialog) { }
 
@@ -27,7 +28,7 @@ export class EmployeeComponent implements OnInit {
 
   GetEmployeesList(){
     this.isLoading = true;
-    this.employeeService.GetEmployeeListByCompanyId(this.pageIndex, PAGE_SIZE).then((response)=>{
+    this.employeeService.GetEmployeeListByCompanyId(this.pageIndex, PAGE_SIZE, this.searchText).then((response)=>{
       this.totalCount = response.totalCount;
       this.isLoading = false;
     },(err)=>{
@@ -37,6 +38,11 @@ export class EmployeeComponent implements OnInit {
 
   onIndexChange(value: number){
     this.pageIndex = value;
+    this.GetEmployeesList();
+  }
+
+  onSearched(){
+    this.pageIndex = 0;
     this.GetEmployeesList();
   }
 
