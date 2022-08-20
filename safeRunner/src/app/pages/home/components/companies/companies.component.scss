@@ -9,16 +9,56 @@
   .header {
     width: 100%;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    justify-content: space-between;
     padding-right: 10px;
+    padding-left: 10px;
     padding-bottom: 10px;
-    button {
+    .add-new-btn {
       padding: 5px 5px;
       border-radius: 2px;
       background-color: #2e7534;
       color: white;
       border-color: white;
       border-style: solid;
+    }
+    .search-container{
+      padding: 5px 5px;
+      border-radius: 2px;
+      .search-bar {
+        margin:auto;
+        max-width:300px;
+      }
+      .search-bar input[type=text] {
+        padding: 5px;
+        font-size: 15px;
+        border: 1px solid grey;
+        float: left;
+        width: 80%;
+        background: #ffffff;
+      }
+
+      .search-bar button {
+        float: left;
+        width: 20%;
+        padding: 5px;
+        background: #3b56c4;
+        color: white;
+        font-size: 15px;
+        border: 1px solid grey;
+        border-left: none;
+        cursor: pointer;
+      }
+
+      .search-bar button:hover {
+        background: #273981;
+      }
+
+      .search-bar::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
     }
   }
 

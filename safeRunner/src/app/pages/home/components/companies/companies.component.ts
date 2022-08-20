@@ -19,6 +19,7 @@ export class CompaniesComponent implements OnInit {
   }
   pageIndex = 0;
   totalCount = 0;
+  searchText = '';
 
   constructor(private companyService: CompanyService, private router: Router, private matDialog: MatDialog) { }
 
@@ -28,7 +29,7 @@ export class CompaniesComponent implements OnInit {
 
   GetCompanyList(){
     this.isloading = true;
-    this.companyService.GetCompanyList(this.pageIndex, PAGE_SIZE).then((response)=>{
+    this.companyService.GetCompanyList(this.pageIndex, PAGE_SIZE, this.searchText).then((response)=>{
       this.totalCount = response.totalCount;
       this.isloading = false;
     },(err)=>{
@@ -39,6 +40,11 @@ export class CompaniesComponent implements OnInit {
   onIndexChange(value: number){
     this.pageIndex = value;
     this.GetCompanyList();
+  }
+
+  onSearched(){
+  this.pageIndex = 0;
+  this.GetCompanyList();
   }
 
   OpenCompanyDetails(id: String) {

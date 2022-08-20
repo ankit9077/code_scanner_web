@@ -1,12 +1,18 @@
 <div class="container">
   <div class="header">
-    <button (click)="AddNewOrganization()">Add New Company <i class="fa-solid fa-plus"></i></button>
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" [(ngModel)]="searchText" placeholder="Search..">
+        <button (click)="onSearched()" type="submit"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+    <button class="add-new-btn" (click)="AddNewOrganization()">Add New Company <i class="fa-solid fa-plus"></i></button>
   </div>
 
   <table *ngIf="!isloading && Companies.length">
     <tr>
       <th>Sr.</th>
-      <th>Name</th>
+      <th>Company Name</th>
       <th>Email</th>
       <th>Employee(s)</th>
       <th>Vehicle(s)</th>
