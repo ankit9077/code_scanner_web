@@ -9,16 +9,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ConfirmationBoxComponent implements OnInit {
   @Input() alertConfig: AlertConfig = {
-    header:'Delete',
-    title:'Are you sure you want to delete?',
-    warning:'',
-    buttons:{confirm:'Yes',cancel:'No'}};
+    header: 'Delete',
+    title: 'Are you sure you want to delete?',
+    warning: '',
+    confirmButtonColor: '#f44336',
+    buttons: { confirm: 'Yes', cancel: 'No' }
+  };
   constructor(private dialogRef: MatDialogRef<ConfirmationBoxComponent>) { }
 
   ngOnInit(): void {
   }
 
-  closeDialog(flag = false){
+  closeDialog(flag = false) {
     this.dialogRef.close(flag);
   }
 }

@@ -14,7 +14,7 @@ import * as moment from 'moment';
 })
 export class CompaniesComponent implements OnInit {
   isloading = false;
-  get Companies(): Array<Company>{
+  get Companies(): Array<Company> {
     return this.companyService.companies;
   }
   pageIndex = 0;
@@ -27,24 +27,24 @@ export class CompaniesComponent implements OnInit {
     this.GetCompanyList();
   }
 
-  GetCompanyList(){
+  GetCompanyList() {
     this.isloading = true;
-    this.companyService.GetCompanyList(this.pageIndex, PAGE_SIZE, this.searchText).then((response)=>{
+    this.companyService.GetCompanyList(this.pageIndex, PAGE_SIZE, this.searchText).then((response) => {
       this.totalCount = response.totalCount;
       this.isloading = false;
-    },(err)=>{
+    }, (err) => {
       this.isloading = false;
     });
   }
 
-  onIndexChange(value: number){
+  onIndexChange(value: number) {
     this.pageIndex = value;
     this.GetCompanyList();
   }
 
-  onSearched(){
-  this.pageIndex = 0;
-  this.GetCompanyList();
+  onSearched() {
+    this.pageIndex = 0;
+    this.GetCompanyList();
   }
 
   OpenCompanyDetails(id: String) {
@@ -57,8 +57,8 @@ export class CompaniesComponent implements OnInit {
       width: '100vw',
     });
     companyEditorInstance.componentInstance.isEditMode = false;
-    companyEditorInstance.afterClosed().subscribe((res)=>{
-      if(res){
+    companyEditorInstance.afterClosed().subscribe((res) => {
+      if (res) {
         this.companyService.companies.unshift(res);
       }
     });
@@ -71,38 +71,39 @@ export class CompaniesComponent implements OnInit {
     });
     companyEditorInstance.componentInstance.isEditMode = true;
     companyEditorInstance.componentInstance.company = JSON.parse(JSON.stringify(company));
-    companyEditorInstance.afterClosed().subscribe((res)=>{
-      if(res) {
+    companyEditorInstance.afterClosed().subscribe((res) => {
+      if (res) {
         this.companyService.companies[index] = res;
       }
     });
   }
 
-  OpenConfirmBoxForDelete(company: Company, index: number){
+  OpenConfirmBoxForDelete(company: Company, index: number) {
     const confirmationBoxInstance = this.matDialog.open(ConfirmationBoxComponent, {
       height: '200px',
       width: '400px',
     });
-    confirmationBoxInstance.componentInstance.alertConfig={
-      header:`Delete Company`,
-      title:`Are you sure you want to delete "${company.name}"?`,
-      warning:``,
-      buttons:{confirm:'Delete',cancel:'Cancel'}
+    confirmationBoxInstance.componentInstance.alertConfig = {
+      header: `Delete Company`,
+      title: `Are you sure you want to delete "${company.name}"?`,
+      warning: ``,
+      confirmButtonColor: '#f44336',
+      buttons: { confirm: 'Delete', cancel: 'Cancel' }
     };
-    confirmationBoxInstance.beforeClosed().subscribe((res)=>{
-      if(res){
+    confirmationBoxInstance.beforeClosed().subscribe((res) => {
+      if (res) {
         this.isloading = true;
-        this.companyService.DeleteCompanyById(company.guid).then((res)=>{
+        this.companyService.DeleteCompanyById(company.guid).then((res) => {
           this.isloading = false;
-          if(this.companyService.companies.length>=1){
-            this.companyService.companies.splice(index,1);
+          if (this.companyService.companies.length >= 1) {
+            this.companyService.companies.splice(index, 1);
             this.totalCount--;
           }
-          if(this.companyService.companies.length===0 && this.totalCount>0){
+          if (this.companyService.companies.length === 0 && this.totalCount > 0) {
             this.pageIndex = 0;
             this.GetCompanyList();
           }
-        },(err)=>{
+        }, (err) => {
           this.isloading = false;
         });
       }

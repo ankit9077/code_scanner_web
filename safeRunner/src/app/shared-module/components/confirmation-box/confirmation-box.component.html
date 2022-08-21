@@ -9,7 +9,7 @@
 
       <div class="clearfix">
         <button type="button" (click)="closeDialog(false)" class="cancelbtn">{{alertConfig.buttons.cancel}}</button>
-        <button type="button" (click)="closeDialog(true)" class="deletebtn">{{alertConfig.buttons.confirm}}</button>
+        <button type="button" [style.background-color]="alertConfig.confirmButtonColor" (click)="closeDialog(true)" class="deletebtn">{{alertConfig.buttons.confirm}}</button>
       </div>
     </div>
   </form>

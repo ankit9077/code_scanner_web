@@ -22,6 +22,7 @@
       <!-- <th>Is Verified</th> -->
       <th>Created On</th>
       <th>Action</th>
+      <th></th>
     </tr>
     <tr *ngFor="let item of Employees;let i=index">
       <td>{{i+1}}</td>
@@ -33,6 +34,7 @@
         <span><i (click)="EditEmployee(item,i)" class="fa-solid fa-pen-to-square"></i></span>
         <span><i (click)="OpenConfirmBoxForDelete(item,i)" class="fa-solid fa-trash"></i></span>
       </td>
+      <td><button class="mail-btn" [class.disabled]="item.isVerified" (click)="OpenConfirmBoxToSendMail(item)">Re-send Password</button></td>
     </tr>
   </table>
 

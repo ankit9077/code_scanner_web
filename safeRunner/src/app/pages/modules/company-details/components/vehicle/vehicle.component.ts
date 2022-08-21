@@ -15,7 +15,7 @@ import { ConfirmationBoxComponent } from 'src/app/shared-module/components/confi
 })
 export class VehicleComponent implements OnInit {
   isLoading = false;
-  get Vehicles(): Array<Vehicle>{
+  get Vehicles(): Array<Vehicle> {
     return this.vehicleService.vehicles;
   }
   pageIndex = 0;
@@ -28,22 +28,22 @@ export class VehicleComponent implements OnInit {
     this.GetVehicleList();
   }
 
-  GetVehicleList(){
+  GetVehicleList() {
     this.isLoading = true;
-    this.vehicleService.GetVehicleListByCompanyId(this.pageIndex,PAGE_SIZE, this.searchText).then((response)=>{
+    this.vehicleService.GetVehicleListByCompanyId(this.pageIndex, PAGE_SIZE, this.searchText).then((response) => {
       this.totalCount = response.totalCount;
       this.isLoading = false;
-    },(err)=>{
+    }, (err) => {
       this.isLoading = false;
     });
   }
 
-  onIndexChange(value: number){
+  onIndexChange(value: number) {
     this.pageIndex = value;
     this.GetVehicleList();
   }
 
-  onSearched(){
+  onSearched() {
     this.pageIndex = 0;
     this.GetVehicleList();
   }
@@ -58,8 +58,8 @@ export class VehicleComponent implements OnInit {
       width: '100vw',
     });
     vehicleEditorInstance.componentInstance.isEditMode = false;
-    vehicleEditorInstance.afterClosed().subscribe((vehicle)=>{
-      if(vehicle){
+    vehicleEditorInstance.afterClosed().subscribe((vehicle) => {
+      if (vehicle) {
         this.vehicleService.vehicles.unshift(vehicle);
       }
     });
@@ -72,8 +72,8 @@ export class VehicleComponent implements OnInit {
     });
     vehicleEditorInstance.componentInstance.isEditMode = true;
     vehicleEditorInstance.componentInstance.vehicle = JSON.parse(JSON.stringify(vehicle));
-    vehicleEditorInstance.afterClosed().subscribe((vehicle)=>{
-      if(vehicle) {
+    vehicleEditorInstance.afterClosed().subscribe((vehicle) => {
+      if (vehicle) {
         this.vehicleService.vehicles[index] = vehicle;
       }
     });
@@ -85,38 +85,39 @@ export class VehicleComponent implements OnInit {
       width: '100vw',
     });
     qrCodesInstance.componentInstance.vehicle = JSON.parse(JSON.stringify(vehicle));
-    qrCodesInstance.afterClosed().subscribe((vehicle)=>{
-      if(vehicle) {
+    qrCodesInstance.afterClosed().subscribe((vehicle) => {
+      if (vehicle) {
         this.vehicleService.vehicles[index] = vehicle;
       }
     });
   }
 
-  OpenConfirmBoxForDelete(vehicle: Vehicle, index: number){
+  OpenConfirmBoxForDelete(vehicle: Vehicle, index: number) {
     const confirmationBoxInstance = this.matDialog.open(ConfirmationBoxComponent, {
       height: '200px',
       width: '400px',
     });
-    confirmationBoxInstance.componentInstance.alertConfig={
-      header:`Delete Vehicle`,
-      title:`Are you sure you want to delete "${vehicle.name}"?`,
-      warning:``,
-      buttons:{confirm:'Delete',cancel:'Cancel'}
+    confirmationBoxInstance.componentInstance.alertConfig = {
+      header: `Delete Vehicle`,
+      title: `Are you sure you want to delete "${vehicle.name}"?`,
+      warning: ``,
+      confirmButtonColor: '#f44336',
+      buttons: { confirm: 'Delete', cancel: 'Cancel' }
     };
-    confirmationBoxInstance.beforeClosed().subscribe((res)=>{
-      if(res){
+    confirmationBoxInstance.beforeClosed().subscribe((res) => {
+      if (res) {
         this.isLoading = true;
-        this.vehicleService.DeleteVehicleById(vehicle.guid).then((res)=>{
+        this.vehicleService.DeleteVehicleById(vehicle.guid).then((res) => {
           this.isLoading = false;
-          if(this.vehicleService.vehicles.length>=1){
-            this.vehicleService.vehicles.splice(index,1);
+          if (this.vehicleService.vehicles.length >= 1) {
+            this.vehicleService.vehicles.splice(index, 1);
             this.totalCount--;
           }
-          if(this.vehicleService.vehicles.length===0 && this.totalCount>0){
+          if (this.vehicleService.vehicles.length === 0 && this.totalCount > 0) {
             this.pageIndex = 0;
             this.GetVehicleList();
           }
-        },(err)=>{
+        }, (err) => {
           this.isLoading = false;
         });
       }

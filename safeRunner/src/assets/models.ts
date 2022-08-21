@@ -4,7 +4,7 @@ export class User {
   email!: string;
   password!: string;
   createdDate!: Date;
-  constructor() {}
+  constructor() { }
 }
 
 export class Company {
@@ -29,9 +29,9 @@ export class Vehicle {
   createdDate!: Date;
   qrCodes!: Array<QrCodes>;
   isMultiUsage!: boolean;
-  constructor(){
-    this.name='';
-    this.plateNumber='';
+  constructor() {
+    this.name = '';
+    this.plateNumber = '';
     this.isMultiUsage = false
   }
 }
@@ -44,9 +44,9 @@ export class Employee {
   createdDate!: Date;
   isVerified!: String;
 
-  constructor(){
-    this.name='';
-    this.email='';
+  constructor() {
+    this.name = '';
+    this.email = '';
   }
 }
 
@@ -59,5 +59,6 @@ export class AlertConfig {
   title!: String;
   header!: String;
   warning!: String;
-  buttons!:{confirm: String, cancel: String};
+  buttons!: { confirm: String, cancel: String };
+  confirmButtonColor!: String;
 }

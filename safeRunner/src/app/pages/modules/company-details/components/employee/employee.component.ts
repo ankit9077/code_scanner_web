@@ -13,7 +13,7 @@ import { ConfirmationBoxComponent } from 'src/app/shared-module/components/confi
 })
 export class EmployeeComponent implements OnInit {
   isLoading = false;
-  get Employees(): Array<Employee>{
+  get Employees(): Array<Employee> {
     return this.employeeService.employees;
   }
   pageIndex = 0;
@@ -26,22 +26,22 @@ export class EmployeeComponent implements OnInit {
     this.GetEmployeesList();
   }
 
-  GetEmployeesList(){
+  GetEmployeesList() {
     this.isLoading = true;
-    this.employeeService.GetEmployeeListByCompanyId(this.pageIndex, PAGE_SIZE, this.searchText).then((response)=>{
+    this.employeeService.GetEmployeeListByCompanyId(this.pageIndex, PAGE_SIZE, this.searchText).then((response) => {
       this.totalCount = response.totalCount;
       this.isLoading = false;
-    },(err)=>{
+    }, (err) => {
       this.isLoading = false;
     });
   }
 
-  onIndexChange(value: number){
+  onIndexChange(value: number) {
     this.pageIndex = value;
     this.GetEmployeesList();
   }
 
-  onSearched(){
+  onSearched() {
     this.pageIndex = 0;
     this.GetEmployeesList();
   }
@@ -56,8 +56,8 @@ export class EmployeeComponent implements OnInit {
       width: '100vw',
     });
     employeeEditorInstance.componentInstance.isEditMode = false;
-    employeeEditorInstance.afterClosed().subscribe((employee)=>{
-      if(employee){
+    employeeEditorInstance.afterClosed().subscribe((employee) => {
+      if (employee) {
         this.employeeService.employees.unshift(employee);
       }
     });
@@ -70,38 +70,59 @@ export class EmployeeComponent implements OnInit {
     });
     employeeEditorInstance.componentInstance.isEditMode = true;
     employeeEditorInstance.componentInstance.employee = JSON.parse(JSON.stringify(employee));
-    employeeEditorInstance.afterClosed().subscribe((employee)=>{
-      if(employee) {
+    employeeEditorInstance.afterClosed().subscribe((employee) => {
+      if (employee) {
         this.employeeService.employees[index] = employee;
       }
     });
   }
 
-  OpenConfirmBoxForDelete(employee: Employee, index: number){
+  OpenConfirmBoxToSendMail(employee: Employee) {
     const confirmationBoxInstance = this.matDialog.open(ConfirmationBoxComponent, {
       height: '200px',
       width: '400px',
     });
-    confirmationBoxInstance.componentInstance.alertConfig={
-      header:`Delete Employee`,
-      title:`Are you sure you want to delete "${employee.name}"?`,
-      warning:``,
-      buttons:{confirm:'Delete',cancel:'Cancel'}
+    confirmationBoxInstance.componentInstance.alertConfig = {
+      header: `Send Password Email`,
+      title: `Are you sure you want to send password again to ${employee.email}?`,
+      warning: ``,
+      confirmButtonColor: '#2e7534',
+      buttons: { confirm: 'Yes', cancel: 'No' }
     };
-    confirmationBoxInstance.beforeClosed().subscribe((res)=>{
-      if(res){
+    confirmationBoxInstance.beforeClosed().subscribe((res) => {
+      if (res) {
+        this.employeeService.sendPasswordMail(employee.guid).then(() => {
+        });
+      }
+    })
+  }
+
+  OpenConfirmBoxForDelete(employee: Employee, index: number) {
+    const confirmationBoxInstance = this.matDialog.open(ConfirmationBoxComponent, {
+      height: '200px',
+      width: '400px',
+    });
+    confirmationBoxInstance.componentInstance.alertConfig = {
+      header: `Delete Employee`,
+      title: `Are you sure you want to delete "${employee.name}"?`,
+      warning: ``,
+      confirmButtonColor: '#f44336',
+      buttons: { confirm: 'Delete', cancel: 'Cancel' }
+    };
+    confirmationBoxInstance.beforeClosed().subscribe((res) => {
+      if (res) {
         this.isLoading = true;
-        this.employeeService.DeleteEmployeeById(employee.guid).then((res)=>{
+        this.employeeService.DeleteEmployeeById(employee.guid).then((res) => {
           this.isLoading = false;
-          if(this.employeeService.employees.length>=1){
-            this.employeeService.employees.splice(index,1);
+          if (this.employeeService.employees.length >= 1) {
+            this.employeeService.employees.splice(index, 1);
             this.totalCount--;
           }
-          if(this.employeeService.employees.length===0 && this.totalCount>0){
+          if (this.employeeService.employees.length === 0 && this.totalCount > 0) {
             this.pageIndex = 0;
             this.GetEmployeesList();
           }
-        },(err)=>{
+        }, (err) => {
           this.isLoading = false;
         });
       }
