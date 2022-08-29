@@ -3,9 +3,12 @@
   align-items: center;
   width: inherit;
   justify-content: left;
+  flex-wrap: wrap;
+  margin: 2px 2px;
   .item {
     cursor: pointer;
     margin-right: 2px;
+    margin-bottom: 2px;
     .icons {
       border: solid;
       padding: 2px 5px;

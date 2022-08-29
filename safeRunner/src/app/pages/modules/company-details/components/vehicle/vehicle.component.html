@@ -43,7 +43,7 @@
     <span>Please clear search bar OR click on the button above to add new vehicle.</span>
   </div>
 
-  <div class="footer" *ngIf="Vehicles.length">
+  <div class="footer" *ngIf="totalCount!==0">
     <app-pagination [selectedIndex]="pageIndex" [totalCount]="totalCount" (indexOnChange)="onIndexChange($event)"></app-pagination>
   </div>
 </div>
